@@ -11,6 +11,5 @@ seatle1$DateTime<-strptime(seatle1$time, "%d-%m:%H:%M:%S")
 seatle1_matix <- data.matrix(seatle1)
 
 #dia 30 em seatle
-seatle30 <- seatle1[seatle1$DateTime >= as.Date("2016-10-31 00:00:00"),]
-seatle30 <- seatle30[seatle30$DateTime <= as.Date("2016-10-31 23:59:59"),]
-
+seatle30 <- seatle1[seatle1$DateTime >= as.POSIXlt("2016-10-30 00:00:00"),]
+seatle30 <- seatle30[seatle30$DateTime <= as.POSIXlt("2016-10-30 23:59:59"),]
