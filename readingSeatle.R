@@ -1,10 +1,16 @@
-seatle1<-read.table("trace1S", header=FALSE,sep=" ", stringsAsFactors=F, col.names =c("month-day-time",
- "bus_id","route_id","Unknown","Latitude","Longitude"))
+#juntando todos os traces
+seatle <- do.call("rbind", lapply(c("Trace1", "Trace2", "Trace3", "Trace4", "Trace5"), read.table, sep=" ",header=FALSE, col.names = c("time", "bus_id", "route_id", "unknown", "latitude", "longitude")))
 
-seatle1$DateAndTime <- format(strptime(as.character(seatle1$month.day.time), format="%d-%m %H:%M:%S"), "%d-%m %H:%M:%S")
+#lendo o trace1
+seatle1<-read.table("Trace1", header=FALSE,sep = " ", col.names = c("time", "bus_id", "route_id", "unknown", "latitude", "longitude"))
 
-seatle1$DateAndTime <- as.Date(as.character(seatle1$month.day.time), format = "%m-%e %H:%M:%S")
+#transformando a string em data
+seatle1$DateTime<-strptime(seatle1$time, "%d-%m:%H:%M:%S")
 
-hist(seatle1$DateAndTime, xlab = "date")
+##transformando em matriz para o heatmap
+seatle1_matix <- data.matrix(seatle1)
 
-plot(seatle1$Latitude, seatle1$Longitude)
+#dia 30 em seatle
+seatle30 <- seatle1[seatle1$DateTime >= as.Date("2016-10-31 00:00:00"),]
+seatle30 <- seatle30[seatle30$DateTime <= as.Date("2016-10-31 23:59:59"),]
+
