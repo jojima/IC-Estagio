@@ -13,3 +13,6 @@ seatle1_matix <- data.matrix(seatle1)
 #dia 30 em seatle
 seatle30 <- seatle1[seatle1$DateTime >= as.POSIXlt("2016-10-30 00:00:00"),]
 seatle30 <- seatle30[seatle30$DateTime <= as.POSIXlt("2016-10-30 23:59:59"),]
+
+#convertendo para o tempo relativo (ao menor tempo)
+seatle1$Tempo <- difftime(seatle1$DateTime, as.POSIXlt(min(seatle1$DateTime)))
