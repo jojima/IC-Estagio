@@ -16,3 +16,9 @@ seatle30 <- seatle30[seatle30$DateTime <= as.POSIXlt("2016-10-30 23:59:59"),]
 
 #convertendo para o tempo relativo (ao menor tempo)
 seatle1$Tempo <- difftime(seatle1$DateTime, as.POSIXlt(min(seatle1$DateTime)))
+
+#como ver a data, pode ser qualquer data frame
+View(tSeatle)
+
+#install package reshape2 e plyr
+#teste de merge, aggregate, melt e outros do pacote
